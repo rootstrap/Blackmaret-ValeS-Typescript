@@ -1,0 +1,17 @@
+name: lint-tests-and-coverage
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+jobs:
+  lint-tests-and-coverage:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Install dependencies
+        run: npm install
+      - name: run tests
+        run: npm test
