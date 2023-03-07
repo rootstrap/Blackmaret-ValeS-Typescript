@@ -1,12 +1,14 @@
 import React from 'react';
 import SignUpForm from '../../components/SignUpForm';
-import styles from './index.css';
+import './index.css';
 
 const SignUp = () => {
   return (
-    <div className='background'>
-      <SignUpForm />
-    </div>
+    <>
+      <div className='background'>
+        <SignUpForm />
+      </div>
+    </>
   );
 };
 
