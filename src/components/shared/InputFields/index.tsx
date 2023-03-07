@@ -1,5 +1,5 @@
-import { FC } from 'react';
 import classnames from 'classnames';
+import VisibilityOff from '../Icons/visibility_off';
 
 interface InputProps {
   variant: string; // ["simple", "error", "password", "disabled"]
