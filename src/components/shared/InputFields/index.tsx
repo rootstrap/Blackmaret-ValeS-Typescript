@@ -10,12 +10,12 @@ interface InputProps {
 
 // add enum
 
-const InputField: FC<InputProps> = ({ variant, text, required, placeholder }) => {
-  const variants = classnames({
-    ['bg-red-500']: variant === 'simple',
-    ['bg-red-400']: variant === 'error',
-    ['bg-red-300']: variant === 'password',
-    ['bg-red-200']: variant === 'disabled',
+const InputField = ({ variant, text, required, placeholder }: InputProps) => {
+  const variants = classnames('w-72 h-11 rounded-lg border', {
+    'border-dark-violet': variant === 'simple',
+    'border-error': variant === 'error',
+    'border-dark-violet ': variant === 'password',
+    'border-dark-grey': variant === 'disabled',
   });
   return (
     <div className=''>
