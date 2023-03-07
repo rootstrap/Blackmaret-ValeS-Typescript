@@ -18,9 +18,12 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
     'border-dark-grey': variant === 'disabled',
   });
   return (
-    <div className=''>
-      <label className={variants}>{text}</label>
-      <input type='text' />
+    <div className='flex align-left flex-col'>
+      <label>{text}</label>
+      <div>
+        <input className={variants} type='text' placeholder={placeholder} />
+        <VisibilityOff className={'text-blue-500'} />
+      </div>
     </div>
   );
 };
