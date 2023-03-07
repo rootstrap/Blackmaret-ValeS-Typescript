@@ -1,4 +1,8 @@
-const VisibilityOff = (className: string) => (
+interface iconProps {
+  className: string;
+}
+
+const VisibilityOff = ({ className }: iconProps) => (
   <svg
     className={className}
     width='22'
