@@ -1,23 +1,30 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import classnames from 'classnames';
 
 interface InputProps {
-  variant: Array<string>;
+  variant: string; // ["simple", "error", "password", "disabled"]
   text: string;
+  placeholder: string;
   required: boolean;
-  enabled: boolean;
-  error: boolean;
 }
 
-const InputField: FC<InputProps> = ({}) => {
+// add enum
+
+const InputField: FC<InputProps> = ({ variant, text, required, placeholder }) => {
+  const variants = classnames({
+    ['bg-red-500']: variant === 'simple',
+    ['bg-red-400']: variant === 'error',
+    ['bg-red-300']: variant === 'password',
+    ['bg-red-200']: variant === 'disabled',
+  });
   return (
-    <>
-      <label className=''>{text}</label>
-      <input type='text'> </input>
-    </>
+    <div className=''>
+      <label className={variants}>{text}</label>
+      <input type='text' />
+    </div>
   );
 };
-*/
+
 export default InputField;
 
 // <InputField ofType='default' label='' required enabled error='false' />
