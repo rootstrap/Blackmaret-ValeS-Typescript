@@ -18,11 +18,17 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
     'border-dark-grey': variant === 'disabled',
   });
   return (
-    <div className='flex align-left flex-col'>
-      <label>{text}</label>
-      <div>
-        <input className={variants} type='text' placeholder={placeholder} />
-        <VisibilityOff className={'text-blue-500'} />
+    <div className='flex flex-col'>
+      <label className='mt-3'>{text}</label>
+      <div className='flex justify-end content-center'>
+        {variant === 'password' ? (
+          <>
+            <input className={variants} type='password' placeholder={placeholder} />
+            <VisibilityOff className={'text-full-black absolute mt-3 mr-3'} />
+          </>
+        ) : (
+          <input className={variants} type='text' placeholder={placeholder} />
+        )}
       </div>
     </div>
   );
