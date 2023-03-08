@@ -1,6 +1,7 @@
 import ButtonLarge from '../shared/ButtonsLarge';
 import Logo from '../shared/Icons/logo';
 import InputField from '../shared/InputFields';
+import Link from '../shared/Links/links';
 
 const SignUpForm = () => {
   return (
@@ -26,6 +27,16 @@ const SignUpForm = () => {
           hasIcon={false}
           onClick={() => 'hello'}
         />
+      </div>
+      <div className='flex-col'>
+        <div>
+          <p>
+            By signing up, you accept the {<Link url='asd' text='Data Policy ' variant='default' />}
+            and the
+            {<Link url='asd' text=' Cookies Policy.' variant='default' />}
+          </p>
+        </div>
+        <p>Already have an account? {<Link url='asd' text='Log in' variant='default' />}</p>
       </div>
     </div>
   );
