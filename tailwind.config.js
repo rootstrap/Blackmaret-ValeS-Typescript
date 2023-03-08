@@ -19,6 +19,9 @@ module.exports = {
         links: '#076CE0',
         active: '#254A96',
       },
+      fontFamily: {
+        sans: ['DM Sans'],
+      },
     },
   },
   plugins: [],
