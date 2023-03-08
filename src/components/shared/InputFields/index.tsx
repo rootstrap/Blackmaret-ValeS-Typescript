@@ -1,5 +1,7 @@
+import { useState } from 'react';
 import classnames from 'classnames';
 import VisibilityOff from '../Icons/visibility_off';
+import Visibility from '../Icons/visibility';
 
 interface InputProps {
   variant: string; // ["simple", "error", "password", "disabled"]
@@ -11,6 +13,11 @@ interface InputProps {
 // add enum
 
 const InputField = ({ variant, text, required, placeholder }: InputProps) => {
+  const [passwordShown, setPasswordShown] = useState(false);
+  const togglePasswordVisibility = () => {
+    setPasswordShown(passwordShown ? false : true);
+  };
+
   const variants = classnames('w-72 h-11 rounded-lg border', {
     'border-dark-violet': variant === 'simple',
     'border-error': variant === 'error',
@@ -23,8 +30,21 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
       <div className='flex justify-end content-center'>
         {variant === 'password' ? (
           <>
-            <input className={variants} type='password' placeholder={placeholder} />
-            <VisibilityOff className={'text-full-black absolute mt-3 mr-3'} />
+            <input
+              className={variants}
+              type={passwordShown ? 'text' : 'password'}
+              placeholder={placeholder}
+            />
+            <button
+              className='w-[22px] h-[15px] absolute mt-4 mr-3'
+              onClick={togglePasswordVisibility}
+            >
+              {passwordShown ? (
+                <Visibility className={'text-full-black'} />
+              ) : (
+                <VisibilityOff className={'text-full-black'} />
+              )}
+            </button>
           </>
         ) : (
           <input className={variants} type='text' placeholder={placeholder} />
