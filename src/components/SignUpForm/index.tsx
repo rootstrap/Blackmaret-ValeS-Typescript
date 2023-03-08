@@ -1,3 +1,4 @@
+import ButtonLarge from '../shared/ButtonsLarge';
 import Logo from '../shared/Icons/logo';
 import InputField from '../shared/InputFields';
 
@@ -18,6 +19,14 @@ const SignUpForm = () => {
         variant='password'
         required={false}
       />
+      <div className='mt-3'>
+        <ButtonLarge
+          variant='primary-disabled'
+          text='Sign Up'
+          hasIcon={false}
+          onClick={() => 'hello'}
+        />
+      </div>
     </div>
   );
 };
