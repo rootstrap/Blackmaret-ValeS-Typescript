@@ -7,7 +7,6 @@ export enum InputVariants {
   Simple = 'simple',
   Error = 'error',
   Password = 'password',
-  Disabled = 'disabled',
 }
 
 interface InputProps {
@@ -15,19 +14,22 @@ interface InputProps {
   text: string;
   placeholder: string;
   required: boolean;
+  disabled?: boolean;
 }
 
-const InputField = ({ variant, text, required, placeholder }: InputProps) => {
+const InputField = ({ variant, text, required, placeholder, disabled }: InputProps) => {
   const [passwordShown, setPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
     setPasswordShown(passwordShown ? false : true);
   };
-  const variants = classnames('w-72 h-11 rounded-lg border p-3', {
-    'border-dark-violet': variant === InputVariants.Simple,
-    'border-error': variant === InputVariants.Error,
-    'border-dark-violet ': variant === InputVariants.Password,
-    'border-dark-grey': variant === InputVariants.Disabled,
-  });
+  const variants = classnames(
+    'w-72 h-11 rounded-lg border p-3 focus:outline-focus focus:outline-dashed disabled:border-dark-grey disabled:background-background active:outline-active-outline active:outline active:outline-1 hover:border-hover',
+    {
+      'border-dark-violet': variant === InputVariants.Simple,
+      'border-error': variant === InputVariants.Error,
+      'border-dark-violet ': variant === InputVariants.Password,
+    },
+  );
   return (
     <div className='flex flex-col'>
       <label className='mt-3'> {required ? text + ' *' : text}</label>
@@ -38,6 +40,7 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
               className={variants}
               type={passwordShown ? 'text' : 'password'}
               placeholder={placeholder}
+              disabled={disabled}
             />
             <button
               className='w-[22px] h-[15px] absolute mt-4 mr-3'
@@ -51,7 +54,7 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
             </button>
           </>
         ) : (
-          <input className={variants} type='text' placeholder={placeholder} />
+          <input className={variants} type='text' placeholder={placeholder} disabled={disabled} />
         )}
       </div>
     </div>

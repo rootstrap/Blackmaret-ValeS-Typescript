@@ -21,17 +21,22 @@ const SignUpForm = () => {
         required={false}
       />
       <div className='mt-3'>
-        <ButtonLarge variant='primary' text='Sign Up' hasIcon={false} onClick={() => 'hello'} />
+        <ButtonLarge
+          variant='primary'
+          text='Sign Up'
+          hasIcon={false}
+          onClick={() => 'hello'}
+          disabled={true}
+        />
       </div>
       <div className='flex flex-col items-center'>
         <div>
           <p className='text-center ml-8 mr-8 mt-5 mb-5'>
-            By signing up, you accept the {<Link url='asd' text='Data Policy ' variant='default' />}
-            and the
-            {<Link url='asd' text=' Cookies Policy.' variant='default' />}
+            By signing up, you accept the {<Link url='asd' text='Data Policy' />} and the{' '}
+            {<Link url='asd' text='Cookies Policy' />}
           </p>
         </div>
-        <p>Already have an account? {<Link url='asd' text='Log in' variant='default' />}</p>
+        <p>Already have an account? {<Link url='asd' text='Log in' />}</p>
       </div>
     </div>
   );
