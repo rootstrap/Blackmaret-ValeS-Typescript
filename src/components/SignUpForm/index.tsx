@@ -6,7 +6,7 @@ import Link from '../shared/Links/links';
 const SignUpForm = () => {
   return (
     <div className='flex-col box-content items-center h-[34.75rem] w-[22.5rem] bg-indigo border-4m flex bg-white rounded-lg mt-16 ml-[7.438rem]'>
-      <Logo className='h-[1.875rem] w-[10.813rem] mt-12 mb-16' />
+      <Logo className='h-[1.875rem] w-[10.813rem] mt-12 mb-9' />
       <InputField text='Email' placeholder='Type your email' variant='simple' required={true} />
       <InputField
         text='Full Name'
@@ -28,9 +28,9 @@ const SignUpForm = () => {
           onClick={() => 'hello'}
         />
       </div>
-      <div className='flex-col'>
+      <div className='flex-col items-center'>
         <div>
-          <p>
+          <p className='text-center ml-8 mr-8 mt-5 mb-5'>
             By signing up, you accept the {<Link url='asd' text='Data Policy ' variant='default' />}
             and the
             {<Link url='asd' text=' Cookies Policy.' variant='default' />}
