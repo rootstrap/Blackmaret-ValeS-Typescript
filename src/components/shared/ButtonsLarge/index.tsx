@@ -1,20 +1,25 @@
 import classnames from 'classnames';
 
+export enum ButtonLargeVariants {
+  Primary = 'primary',
+  Outline = 'outline',
+  PrimaryDisabled = 'primary-disabled',
+  OutlineDisabled = 'outline-disabled',
+}
+
 interface ButtonLargeProps {
-  variant: string; // ["primary", "outline"]
+  variant: string;
   text: string;
   hasIcon: boolean;
   onClick: () => unknown;
 }
 
-// add enum
-
 const ButtonLarge = ({ variant, text, hasIcon, onClick }: ButtonLargeProps) => {
   const variants = classnames('rounded-lg w-72 h-11 border font-semibold', {
-    'bg-dark-violet text-white': variant === 'primary',
-    'bg-white border-dark-violet text-dark-violet': variant === 'outline',
-    'bg-light-grey text-dark-grey': variant === 'primary-disabled',
-    'bg-light-grey border-grey text-dark-grey': variant === 'outlined-disabled',
+    'bg-dark-violet text-white': variant === ButtonLargeVariants.Primary,
+    'bg-white border-dark-violet text-dark-violet': variant === ButtonLargeVariants.Outline,
+    'bg-light-grey text-dark-grey': variant === ButtonLargeVariants.PrimaryDisabled,
+    'bg-light-grey border-grey text-dark-grey': variant === ButtonLargeVariants.OutlineDisabled,
   });
   return (
     <>

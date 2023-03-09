@@ -1,17 +1,20 @@
 import classnames from 'classnames';
 
+export enum ButtonVariants {
+  Default = 'default',
+  Disabled = 'disabled',
+}
+
 interface ButtonLargeProps {
   variant: string;
   text: string;
   url: string;
 }
 
-// add enum
-
 const Link = ({ variant, text, url }: ButtonLargeProps) => {
   const variants = classnames('font-semibold', {
-    'text-links': variant === 'default',
-    'text-dark-grey': variant === 'disabled',
+    'text-links': variant === ButtonVariants.Default,
+    'text-dark-grey': variant === ButtonVariants.Disabled,
   });
   return (
     <a href={url} className={variants}>

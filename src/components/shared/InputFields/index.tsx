@@ -3,14 +3,19 @@ import classnames from 'classnames';
 import VisibilityOff from '../Icons/visibility_off';
 import Visibility from '../Icons/visibility';
 
+export enum InputVariants {
+  Simple = 'simple',
+  Error = 'error',
+  Password = 'password',
+  Disabled = 'disabled',
+}
+
 interface InputProps {
-  variant: string; // ["simple", "error", "password", "disabled"]
+  variant: string;
   text: string;
   placeholder: string;
   required: boolean;
 }
-
-// add enum
 
 const InputField = ({ variant, text, required, placeholder }: InputProps) => {
   const [passwordShown, setPasswordShown] = useState(false);
@@ -18,10 +23,10 @@ const InputField = ({ variant, text, required, placeholder }: InputProps) => {
     setPasswordShown(passwordShown ? false : true);
   };
   const variants = classnames('w-72 h-11 rounded-lg border p-3', {
-    'border-dark-violet': variant === 'simple',
-    'border-error': variant === 'error',
-    'border-dark-violet ': variant === 'password',
-    'border-dark-grey': variant === 'disabled',
+    'border-dark-violet': variant === InputVariants.Simple,
+    'border-error': variant === InputVariants.Error,
+    'border-dark-violet ': variant === InputVariants.Password,
+    'border-dark-grey': variant === InputVariants.Disabled,
   });
   return (
     <div className='flex flex-col'>
