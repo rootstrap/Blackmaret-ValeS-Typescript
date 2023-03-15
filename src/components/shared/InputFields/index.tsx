@@ -1,7 +1,7 @@
 import { InputHTMLAttributes, useState } from 'react';
 import classnames from 'classnames';
-import VisibilityOff from 'components/shared/Icons/visibility_off';
-import Visibility from 'components/shared/Icons/visibility';
+import VisibilityOff from 'components/shared/Icons/VisibilityOff';
+import Visibility from 'components/shared/Icons/Visibility';
 
 export enum InputVariants {
   Simple = 'simple',

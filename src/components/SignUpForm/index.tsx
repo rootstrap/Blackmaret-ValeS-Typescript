@@ -1,5 +1,5 @@
 import ButtonLarge, { ButtonLargeVariants } from 'components/shared/ButtonsLarge';
-import Logo from 'components/shared/Icons/logo';
+import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';
 
