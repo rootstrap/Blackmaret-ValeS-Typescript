@@ -1,33 +1,28 @@
-import ButtonLarge from '../shared/ButtonsLarge';
-import Logo from '../shared/Icons/logo';
-import InputField from '../shared/InputFields';
-import Link from '../shared/Links/links';
+import ButtonLarge, { ButtonLargeVariants } from 'components/shared/ButtonsLarge';
+import Logo from 'components/shared/Icons/logo';
+import InputField, { InputVariants } from 'components/shared/InputFields';
+import Link from 'components/shared/Links/links';
 
 const SignUpForm = () => {
   return (
-    <div className='flex-col box-content items-center h-[34.75rem] w-[22.5rem] bg-indigo border-4m flex bg-white rounded-lg mt-16 ml-[7.438rem]'>
-      <Logo className='h-[1.875rem] w-[10.813rem] mt-12 mb-9' />
-      <InputField text='Email' placeholder='Type your email' variant='simple' required={true} />
+    <div className='flex-col box-content items-center h-[34.7rem] w-[22.5rem] bg-indigo border-4m flex bg-white rounded-lg mt-16 ml-28'>
+      <Logo className='h-7 w-44 mt-12 mb-9' />
+      <InputField
+        text='Email'
+        placeholder='Type your email'
+        variant={InputVariants.Simple}
+        required={true}
+      />
       <InputField
         text='Full Name'
         placeholder='Type your full name'
-        variant='simple'
-        required={false}
+        variant={InputVariants.Simple}
       />
-      <InputField
-        text='Password'
-        placeholder='Type your password'
-        variant='password'
-        required={false}
-      />
+      <InputField text='Password' placeholder='Type your password' variant={InputVariants.Simple} />
       <div className='mt-3'>
-        <ButtonLarge
-          variant='primary'
-          text='Sign Up'
-          hasIcon={false}
-          onClick={() => 'hello'}
-          disabled={true}
-        />
+        <ButtonLarge variant={ButtonLargeVariants.Primary} disabled>
+          Sign Up
+        </ButtonLarge>
       </div>
       <div className='flex flex-col items-center'>
         <div>

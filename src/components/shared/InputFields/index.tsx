@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { InputHTMLAttributes, useState } from 'react';
 import classnames from 'classnames';
-import VisibilityOff from '../Icons/visibility_off';
-import Visibility from '../Icons/visibility';
+import VisibilityOff from 'components/shared/Icons/visibility_off';
+import Visibility from 'components/shared/Icons/visibility';
 
 export enum InputVariants {
   Simple = 'simple',
@@ -9,18 +9,16 @@ export enum InputVariants {
   Password = 'password',
 }
 
-interface InputProps {
-  variant: string;
+interface InputProps extends InputHTMLAttributes<HTMLInputElement> {
+  variant: InputVariants;
   text: string;
-  placeholder: string;
-  required: boolean;
-  disabled?: boolean;
+  required?: boolean;
 }
 
-const InputField = ({ variant, text, required, placeholder, disabled }: InputProps) => {
-  const [passwordShown, setPasswordShown] = useState(false);
+const InputField = ({ variant, text, required, ...rest }: InputProps) => {
+  const [isPasswordShown, setIsPasswordShown] = useState(false);
   const togglePasswordVisibility = () => {
-    setPasswordShown(passwordShown ? false : true);
+    setIsPasswordShown((prevState) => !prevState);
   };
   const variants = classnames(
     'w-72 h-11 rounded-lg border p-3 focus:outline-focus focus:outline-dashed disabled:border-dark-grey disabled:background-background active:outline-active-outline active:outline active:outline-1 hover:border-hover',
@@ -36,17 +34,12 @@ const InputField = ({ variant, text, required, placeholder, disabled }: InputPro
       <div className='flex justify-end content-center'>
         {variant === 'password' ? (
           <>
-            <input
-              className={variants}
-              type={passwordShown ? 'text' : 'password'}
-              placeholder={placeholder}
-              disabled={disabled}
-            />
+            <input className={variants} type={isPasswordShown ? 'text' : 'password'} {...rest} />
             <button
               className='w-[22px] h-[15px] absolute mt-4 mr-3'
               onClick={togglePasswordVisibility}
             >
-              {passwordShown ? (
+              {isPasswordShown ? (
                 <Visibility className={'text-full-black'} />
               ) : (
                 <VisibilityOff className={'text-full-black'} />
@@ -54,7 +47,7 @@ const InputField = ({ variant, text, required, placeholder, disabled }: InputPro
             </button>
           </>
         ) : (
-          <input className={variants} type='text' placeholder={placeholder} disabled={disabled} />
+          <input className={variants} type='text' {...rest} />
         )}
       </div>
     </div>

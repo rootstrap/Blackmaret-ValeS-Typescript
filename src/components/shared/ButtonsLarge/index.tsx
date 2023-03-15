@@ -1,33 +1,29 @@
 import classnames from 'classnames';
+import { ButtonHTMLAttributes } from 'react';
 
 export enum ButtonLargeVariants {
   Primary = 'primary',
   Outline = 'outline',
 }
 
-interface ButtonLargeProps {
-  variant: string;
-  text: string;
-  hasIcon: boolean;
-  disabled?: boolean;
-  onClick: () => unknown;
+interface ButtonLargeProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: ButtonLargeVariants;
+  hasIcon?: boolean;
 }
 
-const ButtonLarge = ({ variant, text, hasIcon, onClick, disabled }: ButtonLargeProps) => {
+const ButtonLarge = ({ variant, children, hasIcon, ...rest }: ButtonLargeProps) => {
   const variants = classnames(
-    'rounded-lg w-72 h-11 border font-semibold disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none active:text-white focus:outline-focus focus:outline-dashed active:bg-active active:outline-active-outline active:outline active:outline-2',
+    'rounded-lg w-72 h-11 border font-semibold hover:bg-hover disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none active:text-white focus:outline-focus focus:outline-dashed active:bg-active active:outline-active-outline active:outline active:outline-2',
     {
-      'bg-dark-violet text-white hover:bg-hover': variant === ButtonLargeVariants.Primary,
-      'bg-white border-dark-violet text-dark-violet hover:bg-hover hover:border-0 hover:text-white disabled:border-grey':
+      'bg-dark-violet text-white ': variant === ButtonLargeVariants.Primary,
+      'bg-white border-dark-violet text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
         variant === ButtonLargeVariants.Outline,
     },
   );
   return (
-    <>
-      <button className={variants} onClick={onClick} disabled={disabled}>
-        {text}
-      </button>
-    </>
+    <button className={variants} {...rest}>
+      {children}
+    </button>
   );
 };
 

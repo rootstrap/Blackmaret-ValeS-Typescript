@@ -1,9 +1,9 @@
-interface ButtonLargeProps {
+interface LinkProps {
   text: string;
   url: string;
 }
 
-const Link = ({ text, url }: ButtonLargeProps) => {
+const Link = ({ text, url }: LinkProps) => {
   return (
     <a
       href={url}
