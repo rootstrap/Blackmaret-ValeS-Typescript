@@ -12,7 +12,8 @@
     "eslint:recommended",
     "prettier",
     "react-app/jest",
-    "react-app"
+    "react-app",
+    "plugin:tailwindcss/recommended"
   ],
   "overrides": [],
   "parser": "@typescript-eslint/parser",
@@ -27,7 +28,8 @@
     "@typescript-eslint",
     "prettier",
     "testing-library",
-    "jest-dom"
+    "jest-dom",
+    "tailwindcss"
   ],
 
   "rules": {
