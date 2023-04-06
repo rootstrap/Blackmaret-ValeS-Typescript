@@ -3942,6 +3942,11 @@
   "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-10.0.0.tgz"
   "version" "10.0.0"
 
+"dotenv@^16.0.3":
+  "integrity" "sha512-7GO6HghkA5fYG9TYnNxi14/7K9f5occMlp3zXAuSxn7CKCxt9xbNWG7yF8hTCSUchlfWSe3uLmlPfigevRItzQ=="
+  "resolved" "https://registry.npmjs.org/dotenv/-/dotenv-16.0.3.tgz"
+  "version" "16.0.3"
+
 "duplexer@^0.1.2":
   "integrity" "sha512-jtD6YG370ZCIi/9GTaJKQxWTZD045+4R4hTk/x1UyoqadyJ9x9CgSi1RlVDQF8U2sxLLSnFkCaMihqljHIWgMg=="
   "resolved" "https://registry.npmjs.org/duplexer/-/duplexer-0.1.2.tgz"
@@ -4301,6 +4306,14 @@
     "semver" "^6.3.0"
     "string.prototype.matchall" "^4.0.8"
 
+"eslint-plugin-tailwindcss@^3.11.0":
+  "integrity" "sha512-RaraOG4D6VXutKnoNvFQ4+frTWGJDKtezy1yCrGFS7Um1to/npDNdh2GL19IRoGB/eanbtwhxFXy+xyEw0grAg=="
+  "resolved" "https://registry.npmjs.org/eslint-plugin-tailwindcss/-/eslint-plugin-tailwindcss-3.11.0.tgz"
+  "version" "3.11.0"
+  dependencies:
+    "fast-glob" "^3.2.5"
+    "postcss" "^8.4.4"
+
 "eslint-plugin-testing-library@^5.0.1", "eslint-plugin-testing-library@^5.10.2":
   "integrity" "sha512-f1DmDWcz5SDM+IpCkEX0lbFqrrTs8HRsEElzDEqN/EBI0hpRj8Cns5+IVANXswE8/LeybIJqPAOQIFu2j5Y5sw=="
   "resolved" "https://registry.npmjs.org/eslint-plugin-testing-library/-/eslint-plugin-testing-library-5.10.2.tgz"
@@ -4551,7 +4564,7 @@
   "resolved" "https://registry.npmjs.org/fast-diff/-/fast-diff-1.2.0.tgz"
   "version" "1.2.0"
 
-"fast-glob@^3.2.11", "fast-glob@^3.2.12", "fast-glob@^3.2.9":
+"fast-glob@^3.2.11", "fast-glob@^3.2.12", "fast-glob@^3.2.5", "fast-glob@^3.2.9":
   "integrity" "sha512-DVj4CQIYYow0BlaelwK1pHl5n5cRSJfM60UA0zK891sVInoPri2Ekj7+e1CT3/3qxXenpI+nBBmQAcJPJgaj4w=="
   "resolved" "https://registry.npmjs.org/fast-glob/-/fast-glob-3.2.12.tgz"
   "version" "3.2.12"
@@ -8703,7 +8716,7 @@
     "@pkgr/utils" "^2.3.1"
     "tslib" "^2.5.0"
 
-"tailwindcss@^3.0.2", "tailwindcss@^3.2.7":
+"tailwindcss@^3.0.2", "tailwindcss@^3.2.2", "tailwindcss@^3.2.7":
   "integrity" "sha512-B6DLqJzc21x7wntlH/GsZwEXTBttVSl1FtCzC8WP4oBc/NKef7kaax5jeihkkCEWc831/5NDJ9gRNDK6NEioQQ=="
   "resolved" "https://registry.npmjs.org/tailwindcss/-/tailwindcss-3.2.7.tgz"
   "version" "3.2.7"

@@ -17,6 +17,7 @@ const SignUpForm = () => {
   const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
     const { name, value } = event.target;
     setUser({ ...user, [name]: value });
+    console.log(user);
   };
 
   async function createUser(event: React.FormEvent<HTMLFormElement>) {
@@ -24,9 +25,8 @@ const SignUpForm = () => {
     const body = {
       user: {
         email: user.email,
-        password: user.password,
-        password_confirmation: user.password,
-        // password = password confirmation due to inconsistency between UI design and API
+        password1: user.password,
+        password2: user.confPassword,
       },
     };
     registerRequest(body);
@@ -42,14 +42,9 @@ const SignUpForm = () => {
           text='Email'
           placeholder='Type your email'
           variant={InputVariants.Simple}
-          required={true}
           value={user.email}
           onChange={handleChange}
-        />
-        <InputField
-          text='Full Name'
-          placeholder='Type your full name'
-          variant={InputVariants.Simple}
+          name='email'
         />
         <InputField
           text='Password'
@@ -57,6 +52,15 @@ const SignUpForm = () => {
           variant={InputVariants.Simple}
           value={user.password}
           onChange={handleChange}
+          name='password'
+        />
+        <InputField
+          text='Confirm Password'
+          placeholder='Repeat your password'
+          variant={InputVariants.Simple}
+          value={user.confPassword}
+          onChange={handleChange}
+          name='confPassword'
         />
         <div className='mt-3'>
           <ButtonLarge variant={ButtonLargeVariants.Primary} disabled>
