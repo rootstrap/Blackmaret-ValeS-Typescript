@@ -13,10 +13,10 @@ interface ButtonLargeProps extends ButtonHTMLAttributes<HTMLButtonElement> {
 
 const ButtonLarge = ({ variant, children, hasIcon, ...rest }: ButtonLargeProps) => {
   const variants = classnames(
-    'rounded-lg w-72 h-11 border font-semibold hover:bg-hover disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none active:text-white focus:outline-focus focus:outline-dashed active:bg-active active:outline-active-outline active:outline active:outline-2',
+    'h-11 w-72 rounded-lg border font-semibold hover:bg-hover focus:outline-dashed focus:outline-focus active:bg-active active:text-white active:outline active:outline-2 active:outline-active-outline disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none',
     {
       'bg-dark-violet text-white ': variant === ButtonLargeVariants.Primary,
-      'bg-white border-dark-violet text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
+      'border-dark-violet bg-white text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
         variant === ButtonLargeVariants.Outline,
     },
   );
