@@ -3,10 +3,10 @@ import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';
 import { ChangeEvent, useState, useEffect } from 'react';
-import { usePostRegistrationMutation } from 'services/blackMarketApi';
+import { useCreateUserMutation } from 'services/blackMarketApi';
 
 const SignUpForm = () => {
-  const [registerRequest, { isSuccess: registerSuccess }] = usePostRegistrationMutation();
+  const [registerRequest, { isSuccess: registerSuccess }] = useCreateUserMutation();
 
   const [user, setUser] = useState({
     email: '',
@@ -42,7 +42,7 @@ const SignUpForm = () => {
   return (
     <div className='mt-16 ml-28 box-content flex h-[34.7rem] w-[22.5rem] flex-col items-center rounded-lg bg-white'>
       <form onSubmit={createUser}>
-        <Logo className='mt-12 mb-9 h-7 w-44' />
+        <Logo className='ml-14 mt-12 mb-9 h-7 w-44' />
         <InputField
           text='Email'
           placeholder='Type your email'

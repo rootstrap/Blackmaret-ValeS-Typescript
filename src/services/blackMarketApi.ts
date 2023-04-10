@@ -8,13 +8,13 @@ export const blackMarketApi = createApi({
     prepareHeaders,
   }),
   endpoints: (builder) => ({
-    postRegistration: builder.mutation({
+    createUser: builder.mutation({
       query: (body) => ({ url: '/dj-rest-auth/registration/', method: 'POST', body }),
     }),
-    deleteLogOut: builder.mutation({
+    logOut: builder.mutation({
       query: (body) => ({ url: '/dj-rest-auth/logout/', method: 'DELETE', body }),
     }),
   }),
 });
 
-export const { usePostRegistrationMutation, useDeleteLogOutMutation } = blackMarketApi;
+export const { useCreateUserMutation, useLogOutMutation } = blackMarketApi;

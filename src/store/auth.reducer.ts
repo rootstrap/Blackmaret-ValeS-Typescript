@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import type { UserType } from 'services/types';
+import type { UserType } from 'types/userTypes';
 
 export const initialState: UserType = {
   access_token: null,
