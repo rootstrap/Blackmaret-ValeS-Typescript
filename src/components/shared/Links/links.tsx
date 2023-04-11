@@ -8,7 +8,7 @@ const Link = ({ text, url }: LinkProps) => {
     <a
       href={url}
       className={
-        'font-semibold text-links disabled:text-dark-grey hover:underline focus:outline-focus focus:outline-dashed active:text-active active:outline-none'
+        'font-semibold text-links hover:underline focus:outline-dashed focus:outline-focus active:text-active active:outline-none disabled:text-dark-grey'
       }
     >
       {text}
