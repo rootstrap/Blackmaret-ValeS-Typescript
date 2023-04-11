@@ -1,4 +1,6 @@
-import { render, fireEvent, waitFor, screen } from '@testing-library/react';
+import React from 'react';
+import { render, waitFor, screen } from '@testing-library/react';
+import userEvent from '@testing-library/user-event';
 import SignUpForm from 'components/SignUpForm';
 import { useCreateUserMutation } from 'services/blackMarketApi';
 
@@ -23,15 +25,9 @@ describe('SignUpForm', () => {
 
   test('enables the Sign Up button when form is filled', async () => {
     render(<SignUpForm />);
-    fireEvent.change(screen.getByPlaceholderText('Type your email'), {
-      target: { value: 'test@example.com' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Type your password'), {
-      target: { value: 'password123' },
-    });
-    fireEvent.change(screen.getByPlaceholderText('Repeat your password'), {
-      target: { value: 'password123' },
-    });
+    userEvent.type(screen.getByPlaceholderText('Type your email'), 'test@example.com');
+    userEvent.type(screen.getByPlaceholderText('Type your password'), 'password123');
+    userEvent.type(screen.getByPlaceholderText('Repeat your password'), 'password123');
 
     await waitFor(() => expect(screen.getByText('Sign Up')).toBeEnabled());
   });
