@@ -1,4 +1,3 @@
-import React from 'react';
 import { render, waitFor, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import SignUpForm from 'components/SignUpForm';
@@ -15,7 +14,7 @@ describe('SignUpForm', () => {
 
   test('renders the SignUpForm component', () => {
     render(<SignUpForm />);
-    expect(screen.getByText('Sign Up')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: 'Sign Up' })).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Type your email')).toBeInTheDocument();
     expect(screen.getByPlaceholderText('Repeat your password')).toBeInTheDocument();
   });
