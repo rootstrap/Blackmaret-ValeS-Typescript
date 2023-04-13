@@ -16,11 +16,21 @@ describe('SignUpForm', () => {
   test('renders the SignUpForm component', () => {
     render(<SignUpForm />);
     expect(screen.getByText('Sign Up')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Type your email')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Repeat your password')).toBeInTheDocument();
   });
 
   test('disables the Sign Up button when form is not filled', () => {
     render(<SignUpForm />);
-    expect(screen.getByText('Sign Up')).toBeDisabled();
+    expect(screen.getByRole('button', { name: 'Sign Up' })).toBeDisabled();
+  });
+
+  test('disbles the Sign Up button when not all the fields are filled', async () => {
+    render(<SignUpForm />);
+    userEvent.type(screen.getByPlaceholderText('Type your email'), 'test@example.com');
+    userEvent.type(screen.getByPlaceholderText('Type your password'), 'password123');
+
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Sign Up' })).toBeDisabled());
   });
 
   test('enables the Sign Up button when form is filled', async () => {
@@ -29,7 +39,7 @@ describe('SignUpForm', () => {
     userEvent.type(screen.getByPlaceholderText('Type your password'), 'password123');
     userEvent.type(screen.getByPlaceholderText('Repeat your password'), 'password123');
 
-    await waitFor(() => expect(screen.getByText('Sign Up')).toBeEnabled());
+    await waitFor(() => expect(screen.getByRole('button', { name: 'Sign Up' })).toBeEnabled());
   });
 
   test('handles successful registration', async () => {
