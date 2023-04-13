@@ -57,6 +57,7 @@
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-tailwindcss": "^3.11.0",
     "eslint-plugin-testing-library": "^5.10.2",
+    "jest-resolver-enhanced": "^1.1.0",
     "postcss": "^8.4.21",
     "prettier": "^2.8.7",
     "prettier-plugin-tailwindcss": "^0.2.7",

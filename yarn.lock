@@ -5898,6 +5898,13 @@
     "resolve.exports" "^1.1.0"
     "slash" "^3.0.0"
 
+"jest-resolver-enhanced@^1.1.0":
+  "integrity" "sha512-UZhPMZ1iHXPnK5veN/Ywd25oaGesFi0FLbRxGlNv0EsEchmK0WH+q0S9n/7QFbomnxT4wOxzICEKgchRBACzVQ=="
+  "resolved" "https://registry.npmjs.org/jest-resolver-enhanced/-/jest-resolver-enhanced-1.1.0.tgz"
+  "version" "1.1.0"
+  dependencies:
+    "enhanced-resolve" "^5.10.0"
+
 "jest-runner@^27.5.1":
   "integrity" "sha512-g4NPsM4mFCOwFKXO4p/H/kWGdJp9V8kURY2lX8Me2drgXqG7rrZAx5kv+5H7wtt/cdFIjhqYx1HrlqWHaOvDaQ=="
   "resolved" "https://registry.npmjs.org/jest-runner/-/jest-runner-27.5.1.tgz"
