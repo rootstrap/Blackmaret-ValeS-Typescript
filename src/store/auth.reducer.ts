@@ -1,5 +1,8 @@
 import { createSlice } from '@reduxjs/toolkit';
 import type { UserType } from 'types/userTypes';
+import { RootState } from './index';
+import { useMemo } from 'react';
+import { useSelector } from 'react-redux';
 
 export const initialState: UserType = {
   access_token: null,
@@ -23,6 +26,16 @@ const slice = createSlice({
     },
   },
 });
+
+export const selectCurrentUser = (state: RootState) => ({
+  access_token: state.auth.access_token,
+  user: state.auth.user,
+});
+
+export const useAuth = () => {
+  const user = useSelector(selectCurrentUser);
+  return useMemo(() => user, [user]);
+};
 
 export const { setCredentials, revokeCredentials } = slice.actions;
 
