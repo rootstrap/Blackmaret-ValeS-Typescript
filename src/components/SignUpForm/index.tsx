@@ -4,8 +4,12 @@ import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';
 import { ChangeEvent, useState, useEffect } from 'react';
 import { useCreateUserMutation } from 'services/blackMarketApi';
+import { SIGNIN } from 'routes';
+import { useNavigate } from 'react-router-dom';
 
 const SignUpForm = () => {
+  const navigate = useNavigate();
+
   const [registerRequest, { isSuccess: registerSuccess }] = useCreateUserMutation();
 
   const [user, setUser] = useState({
@@ -36,7 +40,16 @@ const SignUpForm = () => {
   }
 
   if (registerSuccess) {
-    return <p>Register successful</p>;
+    return (
+      <>
+        <div className='mt-16 ml-28 box-content flex h-32 w-[22.5rem] flex-col items-center rounded-lg bg-white'>
+          <p className='mt-6 mb-4'> Confirmation email sent.</p>
+          <ButtonLarge variant={ButtonLargeVariants.Outline} onClick={() => navigate(SIGNIN)}>
+            Sign In
+          </ButtonLarge>
+        </div>
+      </>
+    );
   }
 
   return (
@@ -82,7 +95,7 @@ const SignUpForm = () => {
             {<Link url='asd' text='Cookies Policy' />}
           </p>
         </div>
-        <p>Already have an account? {<Link url='asd' text='Log in' />}</p>
+        <p>Already have an account? {<Link url={SIGNIN} text='Log in' />}</p>
       </div>
     </div>
   );
