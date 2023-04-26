@@ -2,7 +2,7 @@ import SignUpForm from 'components/SignUpForm';
 
 const SignUp = () => {
   return (
-    <div className='absolute m-0 h-screen w-full bg-[url("/src/assets/background.jpg")] bg-cover p-0'>
+    <div className='absolute m-0 h-screen w-full bg-custom-image bg-cover p-0'>
       <SignUpForm />
     </div>
   );

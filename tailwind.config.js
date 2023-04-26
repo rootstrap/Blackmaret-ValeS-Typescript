@@ -22,6 +22,9 @@ module.exports = {
       fontFamily: {
         sans: ['DM Sans'],
       },
+      backgroundImage: {
+        'custom-image': "url('/src/assets/background.jpg')",
+      },
     },
   },
   plugins: [],
