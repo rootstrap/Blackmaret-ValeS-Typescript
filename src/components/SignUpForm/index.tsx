@@ -43,7 +43,7 @@ const SignUpForm = () => {
     return (
       <>
         <div className='mt-16 ml-28 box-content flex h-32 w-[22.5rem] flex-col items-center rounded-lg bg-white'>
-          <p className='mt-6 mb-4'> Confirmation email sent.</p>
+          <p className='mt-6 mb-4'>Confirmation email sent.</p>
           <ButtonLarge variant={ButtonLargeVariants.Outline} onClick={() => navigate(SIGNIN)}>
             Sign In
           </ButtonLarge>
