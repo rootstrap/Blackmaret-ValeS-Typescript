@@ -1,7 +1,7 @@
 import React, { ChangeEvent, useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import ButtonLarge, { ButtonLargeVariants } from 'components/shared/ButtonsLarge';
+import Button, { ButtonVariants } from 'components/shared/ButtonsLarge';
 import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';
@@ -73,18 +73,18 @@ const SignInForm = () => {
             name='password'
           />
           <div className='mt-3'>
-            <ButtonLarge variant={ButtonLargeVariants.Primary} type='submit'>
+            <Button variant={ButtonVariants.Primary} isLarge type='submit'>
               Log in
-            </ButtonLarge>
+            </Button>
           </div>
         </form>
         <p className='m-8 text-center'>{<Link url='asd' text='I forgot my password.' />}</p>
       </div>
       <div className='mt-5 ml-28 box-content flex h-32 w-[22.5rem] flex-col items-center rounded-lg bg-white'>
         <p className='mt-6 mb-4'> Don&apos;t have an account?</p>
-        <ButtonLarge variant={ButtonLargeVariants.Outline} onClick={() => navigate(SIGNUP)}>
+        <Button variant={ButtonVariants.Outline} isLarge onClick={() => navigate(SIGNUP)}>
           Sign up
-        </ButtonLarge>
+        </Button>
       </div>
     </>
   );

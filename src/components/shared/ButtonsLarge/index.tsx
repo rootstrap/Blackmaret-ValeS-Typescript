@@ -1,23 +1,29 @@
 import classnames from 'classnames';
 import { ButtonHTMLAttributes } from 'react';
 
-export enum ButtonLargeVariants {
+export enum ButtonVariants {
   Primary = 'primary',
   Outline = 'outline',
 }
 
-interface ButtonLargeProps extends ButtonHTMLAttributes<HTMLButtonElement> {
-  variant: ButtonLargeVariants;
+interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
+  variant: ButtonVariants;
   hasIcon?: boolean;
+  isLarge?: boolean;
+  notBold?: boolean;
 }
 
-const ButtonLarge = ({ variant, children, hasIcon, ...rest }: ButtonLargeProps) => {
+const Button = ({ variant, children, hasIcon, isLarge, notBold, ...rest }: ButtonProps) => {
   const variants = classnames(
-    'h-11 w-72 rounded-lg border font-semibold hover:bg-hover focus:outline-dashed focus:outline-focus active:bg-active active:text-white active:outline active:outline-2 active:outline-active-outline disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none',
+    'h-11 rounded-lg border hover:bg-hover focus:outline-dashed focus:outline-focus active:bg-active active:text-white active:outline active:outline-2 active:outline-active-outline disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none',
     {
-      'bg-dark-violet text-white ': variant === ButtonLargeVariants.Primary,
+      'border-white bg-dark-violet text-white': variant === ButtonVariants.Primary,
       'border-dark-violet bg-white text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
-        variant === ButtonLargeVariants.Outline,
+        variant === ButtonVariants.Outline,
+      'w-32': !isLarge,
+      'w-72': isLarge,
+      'font-semibold': !notBold,
+      'font-normal': notBold,
     },
   );
   return (
@@ -27,4 +33,4 @@ const ButtonLarge = ({ variant, children, hasIcon, ...rest }: ButtonLargeProps) 
   );
 };
 
-export default ButtonLarge;
+export default Button;
