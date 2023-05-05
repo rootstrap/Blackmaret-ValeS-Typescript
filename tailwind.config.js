@@ -25,6 +25,16 @@ module.exports = {
       backgroundImage: {
         'custom-image': "url('/src/assets/background.jpg')",
       },
+      gridTemplateColumns: {
+        'grid': 'repeat(12, 72px)'
+      },
+      gridGap: {
+        '24': '24px',
+      },
+      margin: {
+        '-122': '-122px',
+        '122': '122px'
+      },
     },
   },
   plugins: [],

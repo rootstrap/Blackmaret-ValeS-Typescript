@@ -1,4 +1,4 @@
-import Button, { ButtonVariants } from 'components/shared/ButtonsLarge';
+import Button, { ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';

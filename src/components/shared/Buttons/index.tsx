@@ -11,17 +11,30 @@ interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
   hasIcon?: boolean;
   isLarge?: boolean;
   notBold?: boolean;
+  isMedium?: boolean;
+  isSmall?: boolean;
 }
 
-const Button = ({ variant, children, hasIcon, isLarge, notBold, ...rest }: ButtonProps) => {
+const Button = ({
+  variant,
+  children,
+  hasIcon,
+  isLarge,
+  isMedium,
+  isSmall,
+  notBold,
+  ...rest
+}: ButtonProps) => {
   const variants = classnames(
     'h-11 rounded-lg border hover:bg-hover focus:outline-dashed focus:outline-focus active:bg-active active:text-white active:outline active:outline-2 active:outline-active-outline disabled:bg-light-grey disabled:text-dark-grey disabled:outline-none',
     {
       'border-white bg-dark-violet text-white': variant === ButtonVariants.Primary,
       'border-dark-violet bg-white text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
         variant === ButtonVariants.Outline,
-      'w-32': !isLarge,
+      'w-32': !isLarge && !isMedium && !isSmall,
       'w-72': isLarge,
+      'w-44': isMedium,
+      'h-7 w-14 rounded': isSmall,
       'font-semibold': !notBold,
       'font-normal': notBold,
     },
