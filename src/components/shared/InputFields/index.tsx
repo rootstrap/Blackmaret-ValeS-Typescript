@@ -29,8 +29,8 @@ const InputField = ({ variant, text, required, ...rest }: InputProps) => {
   return (
     <div className='flex flex-col'>
       <label className='mt-3'> {required ? text + ' *' : text}</label>
-      <div className='flex content-center justify-end'>
-        {variant === InputVariants.Password ? (
+      {variant === InputVariants.Password ? (
+        <div className='flex content-center justify-end'>
           <>
             <input className={variants} type={isPasswordShown ? 'text' : 'password'} {...rest} />
             <div className='absolute mt-4 mr-3 h-4 w-6' onClick={togglePasswordVisibility}>
@@ -41,10 +41,10 @@ const InputField = ({ variant, text, required, ...rest }: InputProps) => {
               )}
             </div>
           </>
-        ) : (
-          <input className={variants} type='text' {...rest} />
-        )}
-      </div>
+        </div>
+      ) : (
+        <input className={variants} type='text' {...rest} />
+      )}
     </div>
   );
 };
