@@ -1,4 +1,4 @@
-import ButtonLarge, { ButtonLargeVariants } from 'components/shared/ButtonsLarge';
+import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import Link from 'components/shared/Links/links';
@@ -44,9 +44,13 @@ const SignUpForm = () => {
       <>
         <div className='mt-16 ml-28 box-content flex h-32 w-[22.5rem] flex-col items-center rounded-lg bg-white'>
           <p className='mt-6 mb-4'> Confirmation email sent.</p>
-          <ButtonLarge variant={ButtonLargeVariants.Outline} onClick={() => navigate(SIGNIN)}>
+          <Button
+            variant={ButtonVariants.Outline}
+            size={ButtonSize.Large}
+            onClick={() => navigate(SIGNIN)}
+          >
             Sign In
-          </ButtonLarge>
+          </Button>
         </div>
       </>
     );
@@ -83,9 +87,14 @@ const SignUpForm = () => {
           name='confPassword'
         />
         <div className='mt-3'>
-          <ButtonLarge variant={ButtonLargeVariants.Primary} disabled={!formFilled} type='submit'>
+          <Button
+            variant={ButtonVariants.Primary}
+            size={ButtonSize.Large}
+            disabled={!formFilled}
+            type='submit'
+          >
             Sign Up
-          </ButtonLarge>
+          </Button>
         </div>
       </form>
       <div className='flex flex-col items-center'>
