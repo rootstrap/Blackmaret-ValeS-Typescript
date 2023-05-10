@@ -2,7 +2,7 @@ import { useState } from 'react';
 import { useDispatch } from 'react-redux';
 import { revokeCredentials } from 'store/auth.reducer';
 import { useLogOutMutation } from 'services/blackMarketApi';
-import Button, { ButtonVariants } from 'components/shared/Buttons';
+import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
 import SearchIcon from 'assets/Search.svg';
 import Cart from 'components/shared/Icons/Cart';
@@ -50,7 +50,7 @@ const Header: React.FC = () => {
             <Button
               variant={ButtonVariants.Primary}
               notBold
-              isMedium
+              size={ButtonSize.Medium}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <span className='hidden sm:inline'>My Account</span>
@@ -65,7 +65,7 @@ const Header: React.FC = () => {
             )}
           </div>
           <div>
-            <Button variant={ButtonVariants.Primary} notBold isMedium>
+            <Button variant={ButtonVariants.Primary} notBold size={ButtonSize.Medium}>
               <span className='hidden sm:inline'>Shopping Cart</span>
               <Cart className='mx-2 inline text-white' />
             </Button>
@@ -73,7 +73,7 @@ const Header: React.FC = () => {
         </div>
         <div className='flex items-center justify-end space-x-2 pr-4 md:hidden'>
           <div>
-            <Button variant={ButtonVariants.Primary} notBold isSmall>
+            <Button variant={ButtonVariants.Primary} notBold size={ButtonSize.Small}>
               <Cart className='inline text-white' />
             </Button>
           </div>
@@ -81,7 +81,7 @@ const Header: React.FC = () => {
             <Button
               variant={ButtonVariants.Primary}
               notBold
-              isSmall
+              size={ButtonSize.Small}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
               <HamburgerMenu className='inline text-white' />
