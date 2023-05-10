@@ -21,7 +21,7 @@ const Column = ({ title, items }: ColumnProps) => {
   };
 
   return (
-    <div className='mb-6 w-full md:mb-0 md:w-1/4'>
+    <div className='mb-6 w-1/2 md:mb-0 md:w-1/4'>
       <h2 className='mb-4 font-bold'>{title}</h2>
       {renderList()}
     </div>

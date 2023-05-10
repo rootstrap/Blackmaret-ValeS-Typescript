@@ -37,7 +37,7 @@ const Header: React.FC = () => {
           <input
             type='text'
             placeholder='Search for products'
-            className='ml-24 mr-6 h-10 w-[28.5rem] rounded-md bg-white px-3 py-2'
+            className='mr-6 h-10 w-[28.5rem] rounded-md bg-white px-3 py-2'
             style={{
               backgroundImage: `url(${SearchIcon})`,
               backgroundRepeat: 'no-repeat',
