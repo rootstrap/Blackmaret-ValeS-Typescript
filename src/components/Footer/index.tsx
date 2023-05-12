@@ -10,8 +10,8 @@ import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 const Footer = () => {
   return (
     <footer className='bg-black py-16 text-white'>
-      <div className=' mx-auto ml-6 flex flex-wrap justify-between'>
-        <div className='flex w-full flex-col-reverse md:w-3/4 md:flex-col'>
+      <div className=' mx-auto ml-6 flex flex-wrap justify-between lg:mx-8'>
+        <div className='flex w-full flex-col-reverse lg:w-3/4 lg:flex-col'>
           <div className='flex w-full flex-wrap justify-between'>
             <Column
               title='Restored furniture'
@@ -49,18 +49,18 @@ const Footer = () => {
             />
           </div>
           <div className='mb-8 flex justify-between'>
-            <Logo className='mt-8 h-6 w-44 shrink-0 md:h-8 md:w-48' />
+            <Logo className='mt-8 h-6 w-44 shrink-0 lg:h-8 lg:w-48' />
             <div className='mt-8 flex'>
               <Instagram className={'mr-4 text-white'} />
               <Facebook className={'mr-4 text-white'} />
               <Twitter className={'mr-4 text-white'} />
-              <Linkedin className={'mr-4 text-white'} />
+              <Linkedin className={'mr-8 text-white lg:mr-24'} />
             </div>
           </div>
         </div>
-        <div className='flex flex-col md:w-1/4'>
+        <div className='flex flex-col lg:w-1/4'>
           <div>
-            <p className='font-bold sm:text-2xl'>Subscribe to our weekly newsletter!</p>
+            <p className='font-bold lg:text-2xl'>Subscribe to our weekly newsletter!</p>
             <InputField
               type='text'
               placeholder='Email'
@@ -72,7 +72,7 @@ const Footer = () => {
                 Subscribe
               </Button>
             </div>
-            <p className='mt-2 hidden md:block md:text-sm'>
+            <p className='mt-2 hidden lg:block lg:text-sm'>
               By subscribing you agree to receive weekly emails with our latest news and updates.
             </p>
           </div>
