@@ -59,23 +59,21 @@ const Footer = () => {
           </div>
         </div>
         <div className='flex flex-col lg:w-1/4'>
-          <div>
-            <p className='font-bold lg:text-2xl'>Subscribe to our weekly newsletter!</p>
-            <InputField
-              type='text'
-              placeholder='Email'
-              variant={InputVariants.Simple}
-              text={'Email'}
-            />
-            <div className='mt-3'>
-              <Button variant={ButtonVariants.Primary} size={ButtonSize.Large}>
-                Subscribe
-              </Button>
-            </div>
-            <p className='mt-2 hidden lg:block lg:text-sm'>
-              By subscribing you agree to receive weekly emails with our latest news and updates.
-            </p>
+          <p className='font-bold lg:text-2xl'>Subscribe to our weekly newsletter!</p>
+          <InputField
+            type='text'
+            placeholder='Email'
+            variant={InputVariants.Simple}
+            text={'Email'}
+          />
+          <div className='mt-3'>
+            <Button variant={ButtonVariants.Primary} size={ButtonSize.Large}>
+              Subscribe
+            </Button>
           </div>
+          <p className='mt-2 hidden lg:block lg:text-sm'>
+            By subscribing you agree to receive weekly emails with our latest news and updates.
+          </p>
         </div>
       </div>
     </footer>
