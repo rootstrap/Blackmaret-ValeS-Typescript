@@ -28,16 +28,16 @@ const Header: React.FC = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <header className='h-14 w-screen bg-black px-4 md:h-24'>
-      <div className='mx-auto flex h-14 items-center justify-between px-4 md:h-24'>
+    <header className='h-14 w-screen bg-black px-4 lg:h-24'>
+      <div className='mx-auto flex h-14 items-center justify-between px-4 lg:h-24'>
         <div>
           <Logo className='h-7 w-44 text-white' />
         </div>
-        <div className='hidden md:block'>
+        <div className='hidden lg:block'>
           <input
             type='text'
             placeholder='Search for products'
-            className='ml-24 mr-6 h-10 w-[28.5rem] rounded-md bg-white px-3 py-2'
+            className='mr-6 h-10 w-[28.5rem] rounded-md bg-white px-3 py-2'
             style={{
               backgroundImage: `url(${SearchIcon})`,
               backgroundRepeat: 'no-repeat',
@@ -45,7 +45,7 @@ const Header: React.FC = () => {
             }}
           />
         </div>
-        <div className='hidden md:flex'>
+        <div className='hidden lg:flex'>
           <div className='relative mr-8'>
             <Button
               variant={ButtonVariants.Primary}
@@ -53,7 +53,7 @@ const Header: React.FC = () => {
               size={ButtonSize.Medium}
               onClick={() => setDropdownOpen(!dropdownOpen)}
             >
-              <span className='hidden sm:inline'>My Account</span>
+              <span className='hidden lg:inline'>My Account</span>
               <Arrow className={'ml-2 inline text-white'} />
             </Button>
             {dropdownOpen && (
@@ -66,12 +66,12 @@ const Header: React.FC = () => {
           </div>
           <div>
             <Button variant={ButtonVariants.Primary} notBold size={ButtonSize.Medium}>
-              <span className='hidden sm:inline'>Shopping Cart</span>
+              <span className='hidden lg:inline'>Shopping Cart</span>
               <Cart className='mx-2 inline text-white' />
             </Button>
           </div>
         </div>
-        <div className='flex items-center justify-end space-x-2 pr-4 md:hidden'>
+        <div className='flex items-center justify-end space-x-2 pr-4 lg:hidden'>
           <div>
             <Button variant={ButtonVariants.Primary} notBold size={ButtonSize.Small}>
               <Cart className='inline text-white' />
@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='rounded-md bg-white md:hidden'>
+      <div className='rounded-md bg-white lg:hidden'>
         <input
           type='text'
           placeholder='Search for products'
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
         />
       </div>
       {dropdownOpen && (
-        <ul className='absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-2 shadow-lg md:hidden'>
+        <ul className='absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-2 shadow-lg lg:hidden'>
           <li className='cursor-pointer px-4 py-2 hover:bg-gray-200' onClick={handleLogout}>
             Log out
           </li>

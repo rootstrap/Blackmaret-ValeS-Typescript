@@ -6,7 +6,7 @@ module.exports = {
       colors: {
         white: '#FFFFFF',
         grey: '#C4C4C4',
-        background: 'F4F7FA',
+        background: '#F4F7FA',
         focus: '#1D76EF',
         restored: '#559F21',
         hover: '#446CBC',
@@ -26,14 +26,14 @@ module.exports = {
         'custom-image': "url('/src/assets/background.jpg')",
       },
       gridTemplateColumns: {
-        'grid': 'repeat(12, 72px)'
+        grid: 'repeat(12, 72px)',
       },
       gridGap: {
-        '24': '24px',
+        24: '24px',
       },
       margin: {
         '-122': '-122px',
-        '122': '122px'
+        122: '122px',
       },
     },
   },
