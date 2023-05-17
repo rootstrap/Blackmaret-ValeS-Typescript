@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
-import Link from 'components/shared/Links/links';
+import Link from 'components/shared/Links';
 import { useLogInMutation } from 'services/blackMarketApi';
 import Dashboard from 'pages/Dashboard/dashboard';
 import { SIGNUP } from 'routes';

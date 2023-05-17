@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <header className='h-26 w-screen bg-black'>
+    <header className='h-24 w-screen bg-black'>
       <div className='mx-auto flex h-14 items-center justify-between px-4 lg:h-24'>
         <div>
           <Logo className='h-7 w-44 text-white' />

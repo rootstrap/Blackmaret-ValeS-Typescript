@@ -1,4 +1,4 @@
-import Product, { ProductVariants } from 'components/Product';
+import ProductCarousel, { ProductVariants } from 'components/ProductCarousel';
 import React from 'react';
 
 export interface CarouselProps {

@@ -18,7 +18,7 @@ interface ProductProps {
   className?: string;
 }
 
-const Product: React.FC<ProductProps> = ({ product }) => (
+const ProductListed: React.FC<ProductProps> = ({ product }) => (
   <div className='z-10 flex h-52 w-32 shrink-0 flex-col items-start overflow-hidden rounded-lg bg-white shadow-md md:h-96 md:w-64'>
     <img src={product.image} alt={product.name} className='h-32 w-36 md:h-64 md:w-full' />
     <div className='flex h-20 w-full flex-col justify-between border-t border-dark-grey p-2 md:h-32 md:p-4'>
@@ -40,4 +40,4 @@ const Product: React.FC<ProductProps> = ({ product }) => (
   </div>
 );
 
-export default Product;
+export default ProductListed;
