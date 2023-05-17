@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
+import { ProductType } from 'types/productTypes';
 import { UserType } from 'types/userTypes';
 import { prepareHeaders } from 'utils/serviceUtils';
 
@@ -23,7 +24,14 @@ export const blackMarketApi = createApi({
     logOut: builder.mutation({
       query: (body) => ({ url: '/dj-rest-auth/logout/', method: 'POST', body }),
     }),
+    getProducts: builder.query({
+      query: () => ({ url: '/api/products/', method: 'GET' }),
+      transformResponse: (response: ProductType) => ({
+        ...response,
+      }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation, useLogOutMutation, useLogInMutation } = blackMarketApi;
+export const { useCreateUserMutation, useLogOutMutation, useLogInMutation, useGetProductsQuery } =
+  blackMarketApi;
