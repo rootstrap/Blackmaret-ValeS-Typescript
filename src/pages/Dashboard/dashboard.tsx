@@ -25,11 +25,11 @@ const Dashboard = () => {
   }));
 
   return (
-    <div className='bg-light-grey'>
+    <div className='bg-background'>
       <Header />
-      <div className='absolute h-96 w-full bg-red-500' />
+      <div className='absolute z-0 hidden h-[17rem] w-full bg-black lg:block' />
       <Carousel products={products || []} />
-      <div style={{ backgroundColor: '#E0E0E0', height: 'calc(100vh - 100px)' }} />
+      <div style={{ backgroundColor: '#F4F7FA', height: 'calc(100vh - 100px)' }} />
       <Footer />
     </div>
   );

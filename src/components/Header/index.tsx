@@ -28,7 +28,7 @@ const Header: React.FC = () => {
 
   const [dropdownOpen, setDropdownOpen] = useState(false);
   return (
-    <header className='h-14 w-screen bg-black px-4 lg:h-24'>
+    <header className='h-26 w-screen bg-black'>
       <div className='mx-auto flex h-14 items-center justify-between px-4 lg:h-24'>
         <div>
           <Logo className='h-7 w-44 text-white' />
@@ -89,11 +89,11 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='rounded-md bg-white lg:hidden'>
+      <div className='bg-light-grey px-4 py-2'>
         <input
           type='text'
           placeholder='Search for products'
-          className='h-10 w-full rounded-md bg-white px-3 py-2'
+          className='block h-10 w-full rounded-md bg-white px-4 py-2 lg:hidden'
           style={{
             backgroundImage: `url(${SearchIcon})`,
             backgroundRepeat: 'no-repeat',
@@ -102,7 +102,7 @@ const Header: React.FC = () => {
         />
       </div>
       {dropdownOpen && (
-        <ul className='absolute right-0 mt-2 w-48 origin-top-right rounded-md bg-white py-2 shadow-lg lg:hidden'>
+        <ul className='absolute right-0 z-20 mt-2 w-48 origin-top-right rounded-md bg-white py-2 shadow-lg lg:hidden'>
           <li className='cursor-pointer px-4 py-2 hover:bg-gray-200' onClick={handleLogout}>
             Log out
           </li>
