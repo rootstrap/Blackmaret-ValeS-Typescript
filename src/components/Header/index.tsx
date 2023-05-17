@@ -89,7 +89,7 @@ const Header: React.FC = () => {
           </div>
         </div>
       </div>
-      <div className='bg-light-grey px-4 py-2'>
+      <div className='block bg-light-grey px-4 py-2 lg:hidden'>
         <input
           type='text'
           placeholder='Search for products'
