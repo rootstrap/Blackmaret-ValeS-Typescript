@@ -21,7 +21,7 @@ const InputField = ({ variant, text, required, ...rest }: InputProps) => {
     setIsPasswordShown((prevState) => !prevState);
   };
   const variants = classnames(
-    'h-11 w-72 rounded-lg border border-dark-violet p-3 hover:border-hover focus:outline-dashed focus:outline-focus active:outline active:outline-1 active:outline-active-outline disabled:border-dark-grey',
+    'h-11 w-full rounded-lg border border-dark-violet p-3 hover:border-hover focus:outline-dashed focus:outline-focus active:outline active:outline-1 active:outline-active-outline disabled:border-dark-grey',
     {
       'border-error': variant === InputVariants.Error,
     },
