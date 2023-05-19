@@ -49,7 +49,7 @@ const Footer = () => {
             />
           </div>
           <div className='mb-8 flex justify-between'>
-            <Logo className='mt-8 h-6 w-44 shrink-0 lg:h-8 lg:w-48' />
+            <Logo className='mt-8 h-6 w-32 shrink-0 lg:h-8 lg:w-48' />
             <div className='mt-8 flex'>
               <Instagram className={'mr-4 text-white'} />
               <Facebook className={'mr-4 text-white'} />
