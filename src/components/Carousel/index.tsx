@@ -8,7 +8,7 @@ export interface CarouselProps {
 const Carousel: React.FC<CarouselProps> = ({ products }) => (
   <div className='flex h-auto w-full gap-6 overflow-x-scroll px-6 py-4 lg:justify-center'>
     {products.map((product, index) => (
-      <Product key={index} product={product} />
+      <ProductCarousel key={index} product={product} />
     ))}
   </div>
 );
