@@ -1,29 +1,32 @@
 import React from 'react';
 import Heart from 'components/shared/Icons/Heart';
+import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 
 export enum ProductTypes {
   Restored = 'Restored',
   New = 'New',
 }
 
-export interface ProductVariants {
+export interface ProductListedVariants {
   name: string;
   image: string;
   price: number;
   isRestored: boolean;
 }
 
-interface ProductProps {
-  product: ProductVariants;
+interface ProductListedProps {
+  product: ProductListedVariants;
   className?: string;
 }
 
-const ProductListed: React.FC<ProductProps> = ({ product }) => (
-  <div className='z-10 flex h-52 w-32 shrink-0 flex-col items-start overflow-hidden rounded-lg bg-white shadow-md md:h-96 md:w-64'>
-    <img src={product.image} alt={product.name} className='h-32 w-36 md:h-64 md:w-full' />
-    <div className='flex h-20 w-full flex-col justify-between border-t border-dark-grey p-2 md:h-32 md:p-4'>
-      <div className='flex items-start justify-between'>
-        <p className='text-sm font-semibold md:text-lg md:font-medium'>${product.price}</p>
+const ProductListed: React.FC<ProductListedProps> = ({ product }) => (
+  <div className='z-10 flex h-28 w-80 shrink-0 items-start overflow-hidden rounded-t-lg border-[1px] border-b-grey bg-white shadow-md md:rounded-lg md:border-0 lg:h-44 lg:w-full'>
+    <div className='h-28 w-28 lg:h-44 lg:w-48'>
+      <img src={product.image} alt={product.name} />
+    </div>
+    <div className='mt-4 ml-6 flex w-full justify-between lg:mt-10 lg:ml-10'>
+      <div>
+        <p className='text-xs font-semibold lg:text-base'>{product.name}</p>
         <span
           className={`rounded px-2 py-1 text-xs text-white ${
             product.isRestored ? 'bg-green-500' : 'bg-blue-500'
@@ -31,10 +34,22 @@ const ProductListed: React.FC<ProductProps> = ({ product }) => (
         >
           {product.isRestored ? ProductTypes.Restored : ProductTypes.New}
         </span>
+        <p className='mt-3 text-sm font-semibold md:text-lg md:font-medium lg:mt-5'>
+          ${product.price}
+        </p>
       </div>
-      <div className='flex items-center justify-between text-sm font-semibold md:font-medium lg:text-base'>
-        <h2>{product.name}</h2>
-        <Heart className={'text-black'} />
+      <div className='mr-4 flex flex-col items-end lg:mr-8 lg:items-center'>
+        <Heart className={'mb-8 text-black'} />
+        <div className='hidden lg:block'>
+          <Button variant={ButtonVariants.Primary} size={ButtonSize.Default}>
+            Add to cart
+          </Button>
+        </div>
+        <div className='block lg:hidden'>
+          <Button variant={ButtonVariants.Primary} size={ButtonSize.Thin}>
+            Add to cart
+          </Button>
+        </div>
       </div>
     </div>
   </div>
