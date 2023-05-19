@@ -1,6 +1,11 @@
 import React from 'react';
 import Heart from 'components/shared/Icons/Heart';
 
+export enum ProductTypes {
+  Restored = 'Restored',
+  New = 'New',
+}
+
 export interface ProductVariants {
   name: string;
   image: string;
@@ -24,7 +29,7 @@ const Product: React.FC<ProductProps> = ({ product }) => (
             product.isRestored ? 'bg-green-500' : 'bg-blue-500'
           }`}
         >
-          {product.isRestored ? 'Restored' : 'New'}
+          {product.isRestored ? ProductTypes.Restored : ProductTypes.New}
         </span>
       </div>
       <div className='flex items-center justify-between text-sm font-semibold md:font-medium lg:text-base'>

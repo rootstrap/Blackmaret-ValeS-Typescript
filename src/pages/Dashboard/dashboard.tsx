@@ -12,7 +12,7 @@ const Dashboard = () => {
   }
 
   if (error) {
-    if ('message' in error) {
+    if (error && 'message' in error) {
       return <div>Error: {error.message}</div>;
     }
   }
