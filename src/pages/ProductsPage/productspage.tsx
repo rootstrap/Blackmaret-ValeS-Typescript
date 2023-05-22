@@ -1,12 +1,16 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Footer from 'components/Footer';
 import Header from 'components/Header';
 import { useGetProductsQuery } from 'services/blackMarketApi';
 import ProductList from 'components/ProductList';
 import Filters from 'components/Filters';
-import Filter from 'components/shared/Icons/Filter';
+import ReactPaginate from 'react-paginate';
 
 const ProductsPage = () => {
+  const [pageNumber, setPageNumber] = useState(0);
+  const productsPerPage = 3;
+  const pagesVisited = pageNumber * productsPerPage;
+
   const { data, error, isLoading } = useGetProductsQuery({});
 
   if (isLoading) {
@@ -14,17 +18,24 @@ const ProductsPage = () => {
   }
 
   if (error) {
-    if ('message' in error) {
+    if (error && 'message' in error) {
       return <div>Error: {error.message}</div>;
     }
   }
 
-  const products = data?.results?.slice(0, 7).map((product) => ({
-    name: product.name,
-    image: product.product_picture,
-    price: Number(product.unit_price),
-    isRestored: product.state === 'R',
-  }));
+  const products =
+    data?.results?.slice(pagesVisited, pagesVisited + productsPerPage).map((product) => ({
+      name: product.name,
+      image: product.product_picture,
+      price: Number(product.unit_price),
+      isRestored: product.state === 'R',
+    })) || [];
+
+  const pageCount = Math.ceil((data?.results?.length || 0) / productsPerPage);
+
+  const changePage = ({ selected }: { selected: number }) => {
+    setPageNumber(selected);
+  };
 
   return (
     <div className='bg-background'>
@@ -33,7 +44,21 @@ const ProductsPage = () => {
         <div className='hidden lg:block'>
           <Filters />
         </div>
-        <ProductList products={products || []} />
+        <div className='flex w-full flex-col'>
+          <ProductList products={products} />
+          <ReactPaginate
+            className='mb-24 mt-12 flex flex-row justify-around'
+            previousLabel={'<  Previous Page'}
+            nextLabel={'Next Page  >'}
+            pageCount={pageCount}
+            onPageChange={changePage}
+            containerClassName={'pagination'}
+            previousLinkClassName={'pagination__link'}
+            nextLinkClassName={'pagination__link'}
+            disabledClassName={'pagination__link--disabled'}
+            activeClassName={'pagination__link--active'}
+          />
+        </div>
       </div>
       <Footer />
     </div>
