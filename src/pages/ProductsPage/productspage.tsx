@@ -6,12 +6,34 @@ import ProductList from 'components/ProductList';
 import Filters from 'components/Filters';
 import ReactPaginate from 'react-paginate';
 
+export type FiltersType = {
+  categories: string[];
+  page: number | null;
+  page_size: number | null;
+  search: string;
+  state: string;
+  unit_price_min: number | null;
+  unit_price_max: number | null;
+};
+
+const initialFilters: FiltersType = {
+  categories: [],
+  page: null,
+  page_size: null,
+  search: '',
+  state: '',
+  unit_price_min: null,
+  unit_price_max: null,
+};
+
 const ProductsPage = () => {
   const [pageNumber, setPageNumber] = useState(0);
   const productsPerPage = 3;
   const pagesVisited = pageNumber * productsPerPage;
 
-  const { data, error, isLoading } = useGetProductsQuery({});
+  const [filters, setFilters] = useState<FiltersType>(initialFilters);
+
+  const { data, error, isLoading } = useGetProductsQuery(filters);
 
   if (isLoading) {
     return <div>Loading...</div>;
@@ -28,7 +50,7 @@ const ProductsPage = () => {
       name: product.name,
       image: product.product_picture,
       price: Number(product.unit_price),
-      isRestored: product.state === 'R',
+      condition: product.state,
     })) || [];
 
   const pageCount = Math.ceil((data?.results?.length || 0) / productsPerPage);
@@ -40,9 +62,9 @@ const ProductsPage = () => {
   return (
     <div className='bg-background'>
       <Header />
-      <div className='flex flex-row md:ml-28 md:mt-24'>
-        <div className='hidden lg:block'>
-          <Filters />
+      <div className='flex flex-row md:mt-24 xl:mx-28'>
+        <div className='mb-24 hidden lg:block'>
+          <Filters filters={filters} setFilters={setFilters} />
         </div>
         <div className='flex w-full flex-col'>
           <ProductList products={products} />
@@ -56,7 +78,7 @@ const ProductsPage = () => {
             previousLinkClassName={'pagination__link'}
             nextLinkClassName={'pagination__link'}
             disabledClassName={'pagination__link--disabled'}
-            activeClassName={'pagination__link--active'}
+            activeClassName={'pagination__link--active font-bold'}
           />
         </div>
       </div>
