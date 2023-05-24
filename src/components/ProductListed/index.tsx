@@ -5,13 +5,14 @@ import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 export enum ProductTypes {
   Restored = 'Restored',
   New = 'New',
+  Used = 'Used',
 }
 
 export interface ProductListedVariants {
   name: string;
   image: string;
   price: number;
-  isRestored: boolean;
+  condition: string;
 }
 
 interface ProductListedProps {
@@ -29,10 +30,18 @@ const ProductListed: React.FC<ProductListedProps> = ({ product }) => (
         <p className='text-xs font-semibold lg:text-base'>{product.name}</p>
         <span
           className={`rounded px-2 py-1 text-xs text-white ${
-            product.isRestored ? 'bg-green-500' : 'bg-blue-500'
+            product.condition === 'A'
+              ? 'bg-green-500'
+              : product.condition === 'N'
+              ? 'bg-blue-500'
+              : 'bg-indigo-600'
           }`}
         >
-          {product.isRestored ? ProductTypes.Restored : ProductTypes.New}
+          {product.condition === 'A'
+            ? ProductTypes.Restored
+            : product.condition === 'N'
+            ? ProductTypes.New
+            : ProductTypes.Used}
         </span>
         <p className='mt-3 text-sm font-semibold md:text-lg md:font-medium lg:mt-5'>
           ${product.price}
