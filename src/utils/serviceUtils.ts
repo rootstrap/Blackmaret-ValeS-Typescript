@@ -2,8 +2,12 @@ import type { RootState } from '../store';
 
 type ParamsType = string | number | boolean | null | undefined;
 
-const isEmptyValue = (value: ParamsType) => value === undefined || value === null || value === '';
-
+const isEmptyValue = (value: ParamsType) => {
+  if (Array.isArray(value)) {
+    return value.length === 0;
+  }
+  return value === undefined || value === null || value === '';
+};
 // Removes any key which value is null, undefined or empty string
 export const sanitizeParams = (paramsObj: { [key: string]: ParamsType }) =>
   Object.keys(paramsObj).reduce((acc, key: string) => {
