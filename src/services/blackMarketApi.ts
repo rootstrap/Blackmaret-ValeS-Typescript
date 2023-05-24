@@ -43,8 +43,26 @@ export const blackMarketApi = createApi({
       },
       transformResponse: (response: ProductType) => ({ ...response }),
     }),
+    getCategories: builder.query({
+      query: ({ page, page_size }) => {
+        const params = {
+          page,
+          page_size,
+        };
+        const sanitizedParams = sanitizeParams(params);
+        const query = new URLSearchParams(sanitizedParams).toString();
+
+        return { url: `/api/categories/?${query}`, method: 'GET' };
+      },
+      transformResponse: (response: ProductType) => ({ ...response }),
+    }),
   }),
 });
 
-export const { useCreateUserMutation, useLogOutMutation, useLogInMutation, useGetProductsQuery } =
-  blackMarketApi;
+export const {
+  useCreateUserMutation,
+  useLogOutMutation,
+  useLogInMutation,
+  useGetProductsQuery,
+  useGetCategoriesQuery,
+} = blackMarketApi;
