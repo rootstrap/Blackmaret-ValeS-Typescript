@@ -23,7 +23,7 @@ const Dashboard = () => {
     name: product.name,
     image: product.product_picture,
     price: Number(product.unit_price),
-    isRestored: product.state === 'R',
+    condition: product.state,
   }));
 
   return (
