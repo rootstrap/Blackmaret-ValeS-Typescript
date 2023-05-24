@@ -1,20 +1,35 @@
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import InputField, { InputVariants } from 'components/shared/InputFields';
 import React, { useState } from 'react';
+import { FiltersType } from 'pages/ProductsPage/productspage';
 
-const Filters: React.FC = () => {
-  const [condition, setCondition] = useState('');
+type Props = {
+  filters: FiltersType;
+  setFilters: (filters: FiltersType) => void;
+};
+
+const conditionMapping: { [key: string]: string } = {
+  New: 'N',
+  Used: 'U',
+  Refurbished: 'A',
+};
+
+const Filters: React.FC<Props> = ({ filters, setFilters }) => {
+  const [condition, setCondition] = useState<keyof typeof conditionMapping>('');
   const [category, setCategory] = useState('');
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
   const submitFilters = () => {
-    const filters = {
-      condition,
-      category,
-      price: { min: minPrice, max: maxPrice },
+    const newFilters: FiltersType = {
+      ...filters,
+      categories: category ? [category] : [],
+      state: condition ? conditionMapping[condition] : '',
+      unit_price_min: minPrice ? parseFloat(minPrice) : null,
+      unit_price_max: maxPrice ? parseFloat(maxPrice) : null,
     };
-    console.log(filters);
+
+    setFilters(newFilters);
   };
 
   return (
@@ -52,14 +67,14 @@ const Filters: React.FC = () => {
         value={minPrice}
         onChange={(e) => setMinPrice(e.target.value)}
         variant={InputVariants.Simple}
-        text={'Max'}
+        text={'Min'}
       />
       <InputField
         type='text'
         placeholder='Type maximum'
         value={maxPrice}
         onChange={(e) => setMaxPrice(e.target.value)}
-        text={'Min'}
+        text={'Max'}
         variant={InputVariants.Simple}
       />
       <div className='mt-10'>
