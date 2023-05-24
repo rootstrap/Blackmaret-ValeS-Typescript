@@ -1,7 +1,7 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/dist/query/react';
 import { ProductType } from 'types/productTypes';
 import { UserType } from 'types/userTypes';
-import { prepareHeaders } from 'utils/serviceUtils';
+import { sanitizeParams, prepareHeaders } from 'utils/serviceUtils';
 
 export const blackMarketApi = createApi({
   reducerPath: 'blackMarketAPI',
@@ -25,10 +25,23 @@ export const blackMarketApi = createApi({
       query: (body) => ({ url: '/dj-rest-auth/logout/', method: 'POST', body }),
     }),
     getProducts: builder.query({
-      query: () => ({ url: '/api/products/', method: 'GET' }),
-      transformResponse: (response: ProductType) => ({
-        ...response,
-      }),
+      query: ({ categories, page, page_size, search, state, unit_price_max, unit_price_min }) => {
+        const params = {
+          categories,
+          page,
+          page_size,
+          search,
+          state,
+          unit_price_max,
+          unit_price_min,
+        };
+
+        const sanitizedParams = sanitizeParams(params);
+        const query = new URLSearchParams(sanitizedParams).toString();
+
+        return { url: `/api/products/?${query}`, method: 'GET' };
+      },
+      transformResponse: (response: ProductType) => ({ ...response }),
     }),
   }),
 });
