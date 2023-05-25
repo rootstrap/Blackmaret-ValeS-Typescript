@@ -1,7 +1,8 @@
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import InputField, { InputVariants } from 'components/shared/InputFields';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { FiltersType } from 'pages/ProductsPage/productspage';
+import { useGetCategoriesQuery } from 'services/blackMarketApi';
 
 type Props = {
   filters: FiltersType;
@@ -14,22 +15,47 @@ const conditionMapping: { [key: string]: string } = {
   Refurbished: 'A',
 };
 
+type Category = {
+  id: number;
+  name: string;
+};
+
+type CategoryData = {
+  results?: Category[];
+};
+
 const Filters: React.FC<Props> = ({ filters, setFilters }) => {
   const [condition, setCondition] = useState<keyof typeof conditionMapping>('');
-  const [category, setCategory] = useState('');
+  const [categories, setCategories] = useState(['All']);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
 
-  const submitFilters = () => {
+  const { data: categoryData = { results: [] } as CategoryData } = useGetCategoriesQuery({
+    page: 1,
+    page_size: 10,
+  });
+
+  useEffect(() => {
     const newFilters: FiltersType = {
       ...filters,
-      categories: category ? [category] : [],
+      categories: categories[0] !== 'All' ? categories : [],
       state: condition ? conditionMapping[condition] : '',
       unit_price_min: minPrice ? parseFloat(minPrice) : null,
       unit_price_max: maxPrice ? parseFloat(maxPrice) : null,
     };
 
     setFilters(newFilters);
+  }, [condition, filters, categories, minPrice, maxPrice, setFilters]);
+
+  const resetFilters = () => {
+    setCondition('');
+    setCategories(['All']);
+    setMinPrice('');
+    setMaxPrice('');
+  };
+
+  const isFilterApplied = () => {
+    return condition !== '' || categories[0] !== 'All' || minPrice !== '' || maxPrice !== '';
   };
 
   return (
@@ -43,7 +69,7 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
               type='radio'
               value={item}
               checked={condition === item}
-              onChange={(e) => setCondition(e.target.value)}
+              onChange={(e) => setCondition(e.target.value as keyof typeof conditionMapping)}
               className='h-5 w-5 text-gray-600'
             />
             <span className='ml-2 text-gray-700'>{item}</span>
@@ -52,14 +78,18 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
       </div>
 
       <h2 className='mb-2 mt-10 font-medium'>Category</h2>
-      <InputField
-        type='text'
-        placeholder='Search category'
-        value={category}
-        onChange={(e) => setCategory(e.target.value)}
-        variant={InputVariants.Simple}
-        text={''}
-      />
+      <select
+        className='h-11 w-full rounded-lg border border-dark-violet hover:border-hover focus:outline-dashed focus:outline-focus active:outline active:outline-1 active:outline-active-outline'
+        value={categories}
+        onChange={(e) => setCategories([e.target.value])}
+      >
+        <option value='All'>All</option>
+        {categoryData.results?.map((category) => (
+          <option key={category.id} value={category.name}>
+            {category.name}
+          </option>
+        ))}
+      </select>
       <h2 className='mb-2 mt-14 font-medium'>Price</h2>
       <InputField
         type='text'
@@ -78,8 +108,13 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
         variant={InputVariants.Simple}
       />
       <div className='mt-10'>
-        <Button onClick={submitFilters} variant={ButtonVariants.Primary} size={ButtonSize.Medium}>
-          See results
+        <Button
+          onClick={resetFilters}
+          disabled={!isFilterApplied()}
+          variant={ButtonVariants.Primary}
+          size={ButtonSize.Medium}
+        >
+          Clear filters
         </Button>
       </div>
     </div>
