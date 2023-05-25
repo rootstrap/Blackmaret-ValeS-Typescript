@@ -11,6 +11,7 @@ export enum ButtonSize {
   Small = 'small',
   Medium = 'medium',
   Large = 'large',
+  Thin = 'thin',
 }
 
 interface ButtonProps extends ButtonHTMLAttributes<HTMLButtonElement> {
@@ -28,9 +29,10 @@ const Button = ({ variant, size, children, hasIcon, notBold, ...rest }: ButtonPr
       'border-dark-violet bg-white text-dark-violet hover:border-0 hover:text-white disabled:border-grey':
         variant === ButtonVariants.Outline,
       'w-32': size === ButtonSize.Default,
-      'w-72': size === ButtonSize.Large,
+      'w-full': size === ButtonSize.Large,
       'w-44': size === ButtonSize.Medium,
       'h-7 w-14 rounded': size === ButtonSize.Small,
+      'h-7 w-24 text-sm': size === ButtonSize.Thin,
       'font-semibold': !notBold,
       'font-normal': notBold,
     },

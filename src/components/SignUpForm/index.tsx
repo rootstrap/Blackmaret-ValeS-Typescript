@@ -1,7 +1,7 @@
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
 import InputField, { InputVariants } from 'components/shared/InputFields';
-import Link from 'components/shared/Links/links';
+import Link from 'components/shared/Links';
 import { ChangeEvent, useState, useEffect } from 'react';
 import { useCreateUserMutation } from 'services/blackMarketApi';
 import { SIGNIN } from 'routes';
