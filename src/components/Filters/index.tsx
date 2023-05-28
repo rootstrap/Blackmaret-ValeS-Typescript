@@ -3,16 +3,11 @@ import InputField, { InputVariants } from 'components/shared/InputFields';
 import React, { useState, useEffect } from 'react';
 import { FiltersType } from 'pages/ProductsPage/productspage';
 import { useGetCategoriesQuery } from 'services/blackMarketApi';
+import { Condition, conditionMapping, ConditionTypes } from 'types/conditionTypes';
 
 type Props = {
   filters: FiltersType;
   setFilters: (filters: FiltersType) => void;
-};
-
-const conditionMapping: { [key: string]: string } = {
-  New: 'N',
-  Used: 'U',
-  Refurbished: 'A',
 };
 
 type Category = {
@@ -25,7 +20,7 @@ type CategoryData = {
 };
 
 const Filters: React.FC<Props> = ({ filters, setFilters }) => {
-  const [condition, setCondition] = useState<keyof typeof conditionMapping>('');
+  const [condition, setCondition] = useState<Condition>('');
   const [categories, setCategories] = useState(['All']);
   const [minPrice, setMinPrice] = useState('');
   const [maxPrice, setMaxPrice] = useState('');
@@ -63,13 +58,13 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
       <h1 className='mb-4 text-xl font-bold'>Filters</h1>
       <h2 className='mb-2 font-medium'>Condition</h2>
       <div className='mb-4 flex flex-col'>
-        {['New', 'Used', 'Refurbished'].map((item, i) => (
+        {Object.values(ConditionTypes).map((item, i) => (
           <label key={i} className='mt-3 inline-flex items-center'>
             <input
               type='radio'
               value={item}
               checked={condition === item}
-              onChange={(e) => setCondition(e.target.value as keyof typeof conditionMapping)}
+              onChange={(e) => setCondition(e.target.value as Condition)}
               className='h-5 w-5 text-gray-600'
             />
             <span className='ml-2 text-gray-700'>{item}</span>
