@@ -1,57 +1,48 @@
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import InputField, { InputVariants } from 'components/shared/InputFields';
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { FiltersType } from 'pages/ProductsPage/productspage';
 import { useGetCategoriesQuery } from 'services/blackMarketApi';
-import { Condition, conditionMapping, ConditionTypes } from 'types/conditionTypes';
+import { ConditionTypes } from 'types/conditionTypes';
+import { useFilters } from './useFilters';
 
 type Props = {
   filters: FiltersType;
   setFilters: (filters: FiltersType) => void;
 };
 
-type Category = {
-  id: number;
-  name: string;
-};
-
-type CategoryData = {
-  results?: Category[];
-};
-
 const Filters: React.FC<Props> = ({ filters, setFilters }) => {
-  const [condition, setCondition] = useState<Condition>('');
-  const [categories, setCategories] = useState(['All']);
-  const [minPrice, setMinPrice] = useState('');
-  const [maxPrice, setMaxPrice] = useState('');
+  const { setLocalFilters, resetFilters, isFilterApplied } = useFilters(filters, setFilters);
 
-  const { data: categoryData = { results: [] } as CategoryData } = useGetCategoriesQuery({
-    page: 1,
-    page_size: 10,
-  });
-
-  useEffect(() => {
-    const newFilters: FiltersType = {
-      ...filters,
-      categories: categories[0] !== 'All' ? categories : [],
-      state: condition ? conditionMapping[condition] : '',
-      unit_price_min: minPrice ? parseFloat(minPrice) : null,
-      unit_price_max: maxPrice ? parseFloat(maxPrice) : null,
-    };
-
-    setFilters(newFilters);
-  }, [condition, filters, categories, minPrice, maxPrice, setFilters]);
-
-  const resetFilters = () => {
-    setCondition('');
-    setCategories(['All']);
-    setMinPrice('');
-    setMaxPrice('');
+  const handleConditionChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalFilters((prevFilters: FiltersType) => ({
+      ...prevFilters,
+      state: e.target.value as ConditionTypes,
+    }));
   };
 
-  const isFilterApplied = () => {
-    return condition !== '' || categories[0] !== 'All' || minPrice !== '' || maxPrice !== '';
+  const handleCategoryChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
+    setLocalFilters((prevFilters: FiltersType) => ({
+      ...prevFilters,
+      categories: [e.target.value],
+    }));
   };
+
+  const handleMinPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalFilters((prevFilters: FiltersType) => ({
+      ...prevFilters,
+      unit_price_min: parseFloat(e.target.value),
+    }));
+  };
+
+  const handleMaxPriceChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setLocalFilters((prevFilters: FiltersType) => ({
+      ...prevFilters,
+      unit_price_max: parseFloat(e.target.value),
+    }));
+  };
+
+  const { data: categoryData } = useGetCategoriesQuery({ page: 1, page_size: 10 });
 
   return (
     <div className='ml-8 flex w-64 flex-col'>
@@ -63,8 +54,8 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
             <input
               type='radio'
               value={item}
-              checked={condition === item}
-              onChange={(e) => setCondition(e.target.value as Condition)}
+              checked={filters.state === item}
+              onChange={handleConditionChange}
               className='h-5 w-5 text-gray-600'
             />
             <span className='ml-2 text-gray-700'>{item}</span>
@@ -75,11 +66,11 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
       <h2 className='mb-2 mt-10 font-medium'>Category</h2>
       <select
         className='h-11 w-full rounded-lg border border-dark-violet hover:border-hover focus:outline-dashed focus:outline-focus active:outline active:outline-1 active:outline-active-outline'
-        value={categories}
-        onChange={(e) => setCategories([e.target.value])}
+        value={filters.categories}
+        onChange={handleCategoryChange}
       >
         <option value='All'>All</option>
-        {categoryData.results?.map((category) => (
+        {categoryData?.results?.map((category) => (
           <option key={category.id} value={category.name}>
             {category.name}
           </option>
@@ -89,16 +80,16 @@ const Filters: React.FC<Props> = ({ filters, setFilters }) => {
       <InputField
         type='text'
         placeholder='Type minimum'
-        value={minPrice}
-        onChange={(e) => setMinPrice(e.target.value)}
+        value={filters.unit_price_min?.toString() || ''}
+        onChange={handleMinPriceChange}
         variant={InputVariants.Simple}
         text={'Min'}
       />
       <InputField
         type='text'
         placeholder='Type maximum'
-        value={maxPrice}
-        onChange={(e) => setMaxPrice(e.target.value)}
+        value={filters.unit_price_max?.toString() || ''}
+        onChange={handleMaxPriceChange}
         text={'Max'}
         variant={InputVariants.Simple}
       />
