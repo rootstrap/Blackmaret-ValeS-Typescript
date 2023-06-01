@@ -60,41 +60,43 @@ const SignUpForm = () => {
     <div className='mt-16 ml-28 box-content flex h-[34.7rem] w-[22.5rem] flex-col items-center rounded-lg bg-white'>
       <form onSubmit={createUser}>
         <Logo className='ml-14 mt-12 mb-9 h-7 w-44' />
-        <InputField
-          text='Email'
-          placeholder='Type your email'
-          variant={InputVariants.Simple}
-          value={user.email}
-          onChange={handleChange}
-          name='email'
-        />
-        <InputField
-          text='Password'
-          placeholder='Type your password'
-          variant={InputVariants.Password}
-          value={user.password}
-          onChange={handleChange}
-          type='password'
-          name='password'
-        />
-        <InputField
-          text='Confirm Password'
-          placeholder='Repeat your password'
-          variant={InputVariants.Password}
-          value={user.confPassword}
-          onChange={handleChange}
-          type='password'
-          name='confPassword'
-        />
-        <div className='mt-3'>
-          <Button
-            variant={ButtonVariants.Primary}
-            size={ButtonSize.Large}
-            disabled={!formFilled}
-            type='submit'
-          >
-            Sign Up
-          </Button>
+        <div className='h-full w-72'>
+          <InputField
+            text='Email'
+            placeholder='Type your email'
+            variant={InputVariants.Simple}
+            value={user.email}
+            onChange={handleChange}
+            name='email'
+          />
+          <InputField
+            text='Password'
+            placeholder='Type your password'
+            variant={InputVariants.Password}
+            value={user.password}
+            onChange={handleChange}
+            type='password'
+            name='password'
+          />
+          <InputField
+            text='Confirm Password'
+            placeholder='Repeat your password'
+            variant={InputVariants.Password}
+            value={user.confPassword}
+            onChange={handleChange}
+            type='password'
+            name='confPassword'
+          />
+          <div className='mt-3'>
+            <Button
+              variant={ButtonVariants.Primary}
+              size={ButtonSize.Large}
+              disabled={!formFilled}
+              type='submit'
+            >
+              Sign Up
+            </Button>
+          </div>
         </div>
       </form>
       <div className='flex flex-col items-center'>

@@ -1,17 +1,13 @@
 import React from 'react';
 import Heart from 'components/shared/Icons/Heart';
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
-
-export enum ProductTypes {
-  Restored = 'Restored',
-  New = 'New',
-}
+import { Condition, ConditionTypes, conditionMapping } from 'types/conditionTypes';
 
 export interface ProductListedVariants {
   name: string;
   image: string;
   price: number;
-  isRestored: boolean;
+  condition: Condition;
 }
 
 interface ProductListedProps {
@@ -29,10 +25,18 @@ const ProductListed: React.FC<ProductListedProps> = ({ product }) => (
         <p className='text-xs font-semibold lg:text-base'>{product.name}</p>
         <span
           className={`rounded px-2 py-1 text-xs text-white ${
-            product.isRestored ? 'bg-green-500' : 'bg-blue-500'
+            product.condition === conditionMapping.Restored
+              ? 'bg-green-500'
+              : product.condition === conditionMapping.New
+              ? 'bg-blue-500'
+              : 'bg-indigo-600'
           }`}
         >
-          {product.isRestored ? ProductTypes.Restored : ProductTypes.New}
+          {product.condition === conditionMapping.Restored
+            ? ConditionTypes.Restored
+            : product.condition === conditionMapping.New
+            ? ConditionTypes.New
+            : ConditionTypes.Used}
         </span>
         <p className='mt-3 text-sm font-semibold md:text-lg md:font-medium lg:mt-5'>
           ${product.price}

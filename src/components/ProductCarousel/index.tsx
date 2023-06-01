@@ -1,16 +1,12 @@
 import React from 'react';
 import Heart from 'components/shared/Icons/Heart';
-
-export enum ProductTypes {
-  Restored = 'Restored',
-  New = 'New',
-}
+import { ConditionTypes, conditionMapping, Condition } from 'types/conditionTypes';
 
 export interface ProductVariants {
   name: string;
   image: string;
   price: number;
-  isRestored: boolean;
+  condition: Condition;
 }
 
 interface ProductProps {
@@ -26,10 +22,18 @@ const ProductCarousel: React.FC<ProductProps> = ({ product }) => (
         <p className='text-sm font-semibold md:text-lg md:font-medium'>${product.price}</p>
         <span
           className={`rounded px-2 py-1 text-xs text-white ${
-            product.isRestored ? 'bg-green-500' : 'bg-blue-500'
+            product.condition === conditionMapping.Restored
+              ? 'bg-green-500'
+              : product.condition === conditionMapping.New
+              ? 'bg-blue-500'
+              : 'bg-indigo-600'
           }`}
         >
-          {product.isRestored ? ProductTypes.Restored : ProductTypes.New}
+          {product.condition === conditionMapping.Restored
+            ? ConditionTypes.Restored
+            : product.condition === conditionMapping.New
+            ? ConditionTypes.New
+            : ConditionTypes.Used}
         </span>
       </div>
       <div className='flex items-center justify-between text-sm font-semibold md:font-medium lg:text-base'>
