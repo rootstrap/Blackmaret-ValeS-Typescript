@@ -4,15 +4,15 @@ import { revokeCredentials } from 'store/auth.reducer';
 import { useLogOutMutation } from 'services/blackMarketApi';
 import Button, { ButtonSize, ButtonVariants } from 'components/shared/Buttons';
 import Logo from 'components/shared/Icons/Logo';
-import SearchIcon from 'assets/Search.svg';
 import Cart from 'components/shared/Icons/Cart';
 import Arrow from 'components/shared/Icons/Arrow';
 import HamburgerMenu from 'components/shared/Icons/HambMenu';
+import Search, { SearchVariants } from 'components/Search';
 
 const Header: React.FC = () => {
   const dispatch = useDispatch();
-
   const [logOutRequest] = useLogOutMutation();
+  const [searchTerm, setSearchTerm] = useState('');
 
   async function handleLogout() {
     const body = {
@@ -34,15 +34,11 @@ const Header: React.FC = () => {
           <Logo className='h-7 w-44 text-white' />
         </div>
         <div className='hidden lg:block'>
-          <input
-            type='text'
-            placeholder='Search for products'
-            className='mr-6 h-10 w-[28.5rem] rounded-md bg-white px-3 py-2'
-            style={{
-              backgroundImage: `url(${SearchIcon})`,
-              backgroundRepeat: 'no-repeat',
-              backgroundPosition: 'calc(100% - 1rem) center',
-            }}
+          <Search
+            variant={SearchVariants.Mobile}
+            placeholder={'Search for products'}
+            searchTerm={searchTerm}
+            setSearchTerm={setSearchTerm}
           />
         </div>
         <div className='hidden lg:flex'>
@@ -90,15 +86,11 @@ const Header: React.FC = () => {
         </div>
       </div>
       <div className='block bg-light-grey px-4 py-2 lg:hidden'>
-        <input
-          type='text'
-          placeholder='Search for products'
-          className='block h-10 w-full rounded-md bg-white px-4 py-2 lg:hidden'
-          style={{
-            backgroundImage: `url(${SearchIcon})`,
-            backgroundRepeat: 'no-repeat',
-            backgroundPosition: 'calc(100% - 1rem) center',
-          }}
+        <Search
+          variant={SearchVariants.Desktop}
+          placeholder={'Search for products'}
+          searchTerm={searchTerm}
+          setSearchTerm={setSearchTerm}
         />
       </div>
       {dropdownOpen && (
